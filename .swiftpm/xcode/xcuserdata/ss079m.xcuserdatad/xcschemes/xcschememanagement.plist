@@ -7,9 +7,14 @@
 		<key>BDSDK_iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>BrightDiagnostics.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>BrightDiagnosticsPackage.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>BDSDK_iOS</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BrightDiagnostics</key>
 		<dict>
 			<key>primary</key>
 			<true/>
