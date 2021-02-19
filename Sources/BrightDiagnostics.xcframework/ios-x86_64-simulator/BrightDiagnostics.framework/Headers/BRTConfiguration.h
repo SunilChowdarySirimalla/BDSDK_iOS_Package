@@ -18,12 +18,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef double CLLocationAccuracy;  // typedef from CLLocation.h
-
 /**
  The BRTConfiguration class contains the  builder pattern implementation.
- It generates a configuration class that is consumed by the following API,
- from  BrightDiagnostics:  + (BOOL)configureWith:(BRTConfiguration *_Nullable)configuration
+ It generates a configuration class that is consumed by the configureWithConfiguration: completion: API from BrightDiagnostics
  */
 @interface BRTConfiguration : NSObject
 
@@ -47,27 +44,10 @@ typedef double CLLocationAccuracy;  // typedef from CLLocation.h
  */
 @property (nonatomic, readonly) BOOL realTimeUploads;
 
-#if !TARGET_OS_TV
 /**
- Update the configuration instance with the MonitorSignIficantLocationChange setting
- @return updated instance
+ typedef from CLLocation.h
  */
-- (instancetype _Nonnull)withMonitorSignificantLocationChange:(BOOL)enable;
-/**
- The MonitorSignIficantLocationChange setting. Default is NO, monitoring of significant location changes disabled
- */
-@property (nonatomic, readonly) BOOL monitorSignificantLocationChange;
-
-/**
- Update the configuration instance with the MonitorVisits setting
- @return updated instance
- */
-- (instancetype _Nonnull)withMonitorVisits:(BOOL)enable;
-/**
- The MonitorVisits setting. Default is NO, monitoring of visits  disabled
- */
-@property (nonatomic, readonly) BOOL monitorVisits;
-#endif
+typedef double CLLocationAccuracy;
 
 /**
  Update the configuration instance with the DesiredLocationAccuracy setting
@@ -103,14 +83,16 @@ The current IntervalTimer setting. Default is 0, disabled.
 @property (nonatomic, readonly) NSString *_Nullable countryCollectionRestriction;
 
 /**
- Update the configuration instance with the Crash Reporter setting
+ Update the configuration instance with the DeviceId setting.
+ @param deviceId - String value of deviceId
  @return updated instance
  */
-- (instancetype _Nonnull)withCrashReporter:(BOOL)enable;
+- (instancetype _Nonnull)withDeviceId:(NSString *_Nullable)deviceId;
 /**
- The CrashReporter setting. Default is NO, CrashReporter is  disabled
+ The current deviceID/CustomID Value set by Hosting App. Default is nill.
  */
-@property (nonatomic, readonly) BOOL crashReporter;
+@property (nonatomic, readonly) NSString *_Nullable deviceID;
+
 
 #pragma mark - Builder pattern data collection settings
 

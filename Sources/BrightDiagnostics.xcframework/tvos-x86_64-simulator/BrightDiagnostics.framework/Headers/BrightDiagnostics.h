@@ -28,83 +28,6 @@ FOUNDATION_EXPORT const unsigned char BrightDiagnosticsVersionString[];
 #import <BrightDiagnostics/BRTStream.h>
 #import <BrightDiagnostics/BRTConfiguration.h>
 
-typedef NSString * const BRTConfigurationValidation NS_TYPED_ENUM;
-/// A key for the set of configuration options that were valid
-FOUNDATION_EXPORT BRTConfigurationValidation _Nonnull BRTConfigurationValidationValidKey;
-/// A key for the set of configuration options that were invalid
-FOUNDATION_EXPORT BRTConfigurationValidation _Nonnull BRTConfigurationValidationInvalidKey;
-
-/// Result keys for applying configuration options
-typedef NSString * const BRTConfigurationResult NS_TYPED_ENUM;
-/// A key for the set of configuration items that were successfully applied
-FOUNDATION_EXPORT BRTConfigurationResult _Nonnull BRTConfigurationResultAppliedKey;
-/// A key for the set of configuration items that were not successfully applied
-FOUNDATION_EXPORT BRTConfigurationResult _Nonnull BRTConfigurationResultFailedKey;
-
-/// Keys for setting configuration options
-typedef NSString * const BRTConfigurationOptions NS_TYPED_ENUM;
-/**
- Set realtime uploads enabled/disabled
- 
- The value of this key should be a `BOOL` indicating whether real time uploads are enabled/disabled.
- 
- @see `BrightDiagnostics.realTimeUploadsEnabled`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsRealTimeUploadsKey = @"com.att.mobile.bdsdk.realtimeuploads";
-/**
- Set desired location accuracy
- 
- The value of this key should be an NSNumber indicating the desired location accuracy, corresponding to `CLLocationAccuracy` values.
- 
- @see `BrightDiagnostics.desiredLocationAccuracy`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsDesiredLocationAccuracyKey = @"com.att.mobile.bdsdk.desiredlocationaccuracy";
-/**
- Set monitoring significant location change
- 
- The value of this key should be a `BOOL` indicating whether to enable monitoring significant location change as a collection trigger.
- 
- @see `BrightDiagnostics.monitoringSignificantLocationChange`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsSignificantLocationChangeKey = @"com.att.mobile.bdsdk.monitorsignificantlocationchange";
-/**
- Set monitoring visits (enables BrightDiagnostics.startMonitoringVisits).
- 
- The value of this key should be a `BOOL` indicating whether to enable monitoring visits.
- 
- @note Not available on tvOS.  The value may be set in the config file, but nothing will happen on tvOS devices.  This flag is always off on tvOS.
- 
- @see `BrightDiagnostics.startMinitoringVisits`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsMonitorVisitsKey = @"com.att.mobile.bdsdk.monitorvisits";
-/**
- Set country restriction ISO code.
- 
- The value of this key should be a String indicating the ISO country code. Data will
- **only** be collected when the device is within this country.
- 
- @see `BrightDiagnostics.countryCollectionRestriction`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsCountryCollectionRestrictionKey = @"com.att.mobile.bdsdk.countrycollectionrestriction";
-/**
- Set crash reporter enabled/disabled
- 
- The value of this key should be a `BOOL` indicating whether crashreporter is enabled/disabled.
- 
- @see `BrightDiagnostics.enableCrashReporter`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsCrashReporterKey = @"com.att.mobile.bdsdk.crashreporter";
-
-
-/**
- Specify types of data to be collected. If not provided, a default set of data is
- collected.
- 
- The value of this key should be an array containing `BRTCollectedData` constants.
- 
- @see `BrightDiagnostics.collectedData`
- */
-static BRTConfigurationOptions _Nonnull BRTConfigurationOptionsCollectedDataKey = @"com.att.mobile.bdsdk.collecteddata";
 
 /// Controls what data is collected
 typedef NSString * BRTCollectedData NS_TYPED_ENUM;
@@ -220,24 +143,10 @@ static BRTCollectedData const _Nonnull BRTCollectedDataWiFiInfo = @"com.att.mobi
 @property (nonatomic, class) BOOL realTimeUploadsEnabled;
 
 /**
- Set to allow the app to be restarted when receiving a visit event when
- monitoring visits is enabled - defaults to off.
- 
- When the app receives a notice it is about to terminate, BrightDiagnostics,
- by default, will stop monitoring visits and significate location changes to
- prevent the app from being restarted when location services delivers an
- update after the app terminates.  Setting this flag tells BrightDiagnostics
- to not disable monitoring (if it is enabled). This optional setting should
- ONLY be changed if the app has put the proper mechanism in place to handle
- a restart caused by receiving a location or visit update.
- 
- Most apps do not have this capability by default, and should not change this
- setting.  Please review the Apple documentation on CLVisit startMonitoringVisits
- and CLLocationManager programming before changing this setting.
+ typedef from CLLocation.h
  */
-@property (nonatomic, class) BOOL allowVisitsToRestartAppEnabled;
+typedef double CLLocationAccuracy;
 
-typedef double CLLocationAccuracy;  // typedef from CLLocation.h
 /**
  Sets the desired location accuracy to use for all subsequent location requests.
  The default value is `kCLLocationAccuracyBest`; using only as accurate value as
@@ -270,33 +179,9 @@ typedef double CLLocationAccuracy;  // typedef from CLLocation.h
  */
 + (BOOL)restrictCollectionToCountryCode:(NSString *_Nullable)countryCode NS_SWIFT_NAME(restrictCollection(countryCode:));
 
-/// Completion block for configureWithOptions
-typedef void (^ConfigureWithOptionsCompletion)(BOOL, NSDictionary<BRTConfigurationResult, NSArray<NSString *> *> *_Nullable);
-
 /**
- Configure the SDK using a dictionary.
- The options successfully applied are placed in an array and set to the `BRTConfigurationResultAppliedKey` key in the dictionary from the completion block.
- The options that failed to be applied are placed in an array and set to the `BRTConfigurationResultFailedKey` key in the dictionary from the completion block.
- 
- @param options  A dictionary of options. Passing in an empty dictionary or nil value will reset the configuration back to default values.
- @param completion  A completion block that gets called with a boolean, representing true on success or false if the configuration dictionary could not be applied,
- and also a dictionary with 2 arrays for the applied and for the failed options.
- @note the completion block can be called on a different queue
+ Completion block for configureWithConfiguration
  */
-+ (void)configureWithOptions:(NSDictionary<BRTConfigurationOptions, id> *_Nullable)options
-                  completion:(ConfigureWithOptionsCompletion _Nullable)completion;
-
-/**
- Validate that the input dictionary had valid keys and value types, that can be consumed by the configureWithOptions: API.
- The options successfully validated are placed in an array and set to the `BRTConfigurationValidationValidKey`  key in the returned dictionary.
- The options that failed the validation are placed in an array and set to the `BRTConfigurationValidationInvalidKey` key in the returned dictionary.
- 
- @param options A dictionary of options.
- @return A dictionary with 2 arrays for the valid and for the invalid options.
- */
-+ (NSDictionary<BRTConfigurationValidation, NSArray<NSString *> *> *_Nullable)validateConfigurationOptions:(NSDictionary<BRTConfigurationOptions, id> *_Nullable)options;
-
-/// Completion block for configureWithConfiguration
 typedef void (^ConfigureWithConfigurationCompletion)(BOOL);
 
 /**
@@ -308,14 +193,6 @@ typedef void (^ConfigureWithConfigurationCompletion)(BOOL);
  */
 + (void)configureWithConfiguration:(BRTConfiguration *_Nullable)configuration
                         completion:(ConfigureWithConfigurationCompletion _Nullable)completion;
-
-/**
- Enable / Disable the crash report collection & uploads by the SDK.
- 
- @note Once CrashReporter is enabled it will collect the crash data to process and uploads on BrighgtDiagnostics Initialization.
- Any uploads already in progress will still complete when set to `false`.
- */
-@property (nonatomic, class) BOOL enabledCrashReporter;
 
 
 #pragma mark - Collecting Data
@@ -355,57 +232,6 @@ typedef void (^ConfigureWithConfigurationCompletion)(BOOL);
 /** Stop timer based collection */
 + (void)stopTimedCollection;
 
-#pragma mark - Location Based Triggers
-
-#if !TARGET_OS_TV
-
-/// Indicates if timer based collection is enabled
-@property (nonatomic, readonly, class) BOOL monitoringSignificantLocationChange;
-
-/**
- Start collecting based on signifcant location change.
- 
- *Not available on tvOS.*
- 
- @note Prior to calling this method, you must have already obtained Location Always Authorization.
- To enable monitoring in the background, you must enable the *Location updates Background Mode*
- for your app and set the `CLLocationManager` property `allowsBackgroundLocationUpdates` to `true`.
- See BDSDK integration guide for details.
- 
- @return True on success, false if significant location change is not
- available on the device or Location Always authorization is not granted.
- */
-+ (BOOL)startSignificantLocationChangeCollection __TVOS_PROHIBITED;
-
-/** Stop monitoring using significant location change.
- 
- *Not available on tvOS.*
- */
-+ (void)stopSignificantLocationChangeCollection __TVOS_PROHIBITED;
-
-/**
- Start Monitoring Visits
- 
- *Not available on tvOS.*
- 
- @note Prior to calling this method, you must have already obtained Location Always Authorization.
- To enable monitoring in the background, you must enable the *Location updates Background Mode*
- for your app and set the `CLLocationManager` property `allowsBackgroundLocationUpdates` to `true`.
- See BDSDK integration guide for details.
- 
- @return True on success, false if monitoring visits is not
- available on the device or Location Always authorization is not granted.
- */
-+ (BOOL)startMonitoringVisits __TVOS_PROHIBITED;
-
-/**
- Stop Monitoring Visits
- 
- *Not available on tvOS.*
- */
-+ (void)stopMonitoringVisits __TVOS_PROHIBITED;
-
-#endif
 
 
 @end

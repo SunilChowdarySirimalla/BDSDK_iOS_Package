@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BRTConfiguration.h</key>
 		<data>
-		CAa6C0p6dB3OGgE3Dl3SSNfd/pQ=
+		HcHRvSXqBbZ4ill7FsDwTNNSmU4=
 		</data>
 		<key>Headers/BRTStream.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/BrightDiagnostics.h</key>
 		<data>
-		TbsI7S8orrLr3uAzyOypspP/wmk=
+		8wcQvNa4F0eZvtOYHbv1KXbx++s=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -35,7 +35,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BWUYRI5/jYf5AS/an9CfW+GxfaCvead4qJtFjvlqsJg=
+			91TctMKGRlFO4bMHsLo6La3rq3iwW6WVq84xAMtf3GQ=
 			</data>
 		</dict>
 		<key>Headers/BRTStream.h</key>
@@ -49,7 +49,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xDG6mV54vb2J6LcP3IOQJYZrmS3qbscPkzg7xtYJjmo=
+			LbdBnHssvrOYvLJ3fXM3ba/rHxy7Sthuj9L9CTq2H0k=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
