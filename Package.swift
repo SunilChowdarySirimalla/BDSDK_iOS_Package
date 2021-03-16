@@ -6,8 +6,9 @@ import PackageDescription
 let package = Package(
     name: "BrightDiagnostics",
     platforms: [
-        .iOS(.v11),
-        .tvOS(.v11),
+            .iOS(.v11),
+            .macOS(.v10_14),
+            .tvOS(.v10),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
