@@ -7,7 +7,6 @@ let package = Package(
     name: "BrightDiagnostics",
     platforms: [
             .iOS(.v11),
-            .macOS(.v10_14),
             .tvOS(.v10),
     ],
     products: [
