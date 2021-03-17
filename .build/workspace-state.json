@@ -1,0 +1,1 @@
+{"object": {"artifacts": [{"packageRef": {"identity": "bdsdk_ios_package", "kind": "root", "name": "BDSDK_iOS_Package", "path": "/Users/ss079m/CNN/BDSDK_iOS_Package"}, "source": {"path": "./Sources/BrightDiagnostics.xcframework", "type": "local"}, "targetName": "BrightDiagnostics"}], "dependencies": []}, "version": 4}

@@ -1,4 +1,0 @@
-framework module BrightDiagnostics {
-  header "BrightDiagnostics-Swift.h"
-  requires objc
-}
