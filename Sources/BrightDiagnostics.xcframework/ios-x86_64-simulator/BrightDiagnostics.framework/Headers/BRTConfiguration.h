@@ -44,6 +44,28 @@
  */
 @property (nonatomic, readonly) BOOL realTimeUploads;
 
+#if !TARGET_OS_TV
+/**
+ Update the configuration instance with the MonitorSignIficantLocationChange setting
+ @return updated instance
+ */
+- (instancetype _Nonnull)withMonitorSignificantLocationChange:(BOOL)enable;
+/**
+ The MonitorSignIficantLocationChange setting. Default is NO, monitoring of significant location changes disabled
+ */
+@property (nonatomic, readonly) BOOL monitorSignificantLocationChange;
+
+/**
+ Update the configuration instance with the MonitorVisits setting
+ @return updated instance
+ */
+- (instancetype _Nonnull)withMonitorVisits:(BOOL)enable;
+/**
+ The MonitorVisits setting. Default is NO, monitoring of visits  disabled
+ */
+@property (nonatomic, readonly) BOOL monitorVisits;
+#endif
+
 /**
  typedef from CLLocation.h
  */
@@ -93,6 +115,15 @@ The current IntervalTimer setting. Default is 0, disabled.
  */
 @property (nonatomic, readonly) NSString *_Nullable deviceID;
 
+/**
+ Update the configuration instance with the Crash Reporter setting
+ @return updated instance
+ */
+- (instancetype _Nonnull)withCrashReporter:(BOOL)enable;
+/**
+ The CrashReporter setting. Default is NO, CrashReporter is  disabled
+ */
+@property (nonatomic, readonly) BOOL crashReporter;
 
 #pragma mark - Builder pattern data collection settings
 
