@@ -4,10 +4,6 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Debug</key>
-		<data>
-		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
-		</data>
 		<key>Headers/BRTConfiguration.h</key>
 		<data>
 		HcHRvSXqBbZ4ill7FsDwTNNSmU4=
@@ -22,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		K8pXkAQlSN5F6Akx6CYP+1hrmFk=
+		Lm4L2ApHNMDXzEXiccRqgZ0MpAQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -35,13 +31,6 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Debug</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-			</data>
-		</dict>
 		<key>Headers/BRTConfiguration.h</key>
 		<dict>
 			<key>hash2</key>

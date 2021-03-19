@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		DJTunNryryLvKqHY2ueBRpZ4bXc=
+		TpsWkItrwMHy/jc5jDYtcr8nwIg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -18,18 +18,11 @@
 			pjIojy3q8D/Jzya7uAubjnhZ/Jv/EXGoypY4D63+TvM=
 			</data>
 		</dict>
-		<key>Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			iGMbl9NR5McHPMx7S2NHwLd6d3kOsltM85zd6eXxDOs=
-			</data>
-		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			N4p2AIO5LgY8WXe4uftZ+b6ff6+nR/6QU1wheLQoyc8=
+			yjObc4gGZNVFW1OzbrjFXmQGxgpfK8dwWswTizYln9A=
 			</data>
 		</dict>
 	</dict>

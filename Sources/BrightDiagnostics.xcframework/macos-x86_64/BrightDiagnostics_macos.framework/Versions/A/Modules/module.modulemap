@@ -1,6 +1,0 @@
-framework module BrightDiagnostics_macos {
-  umbrella header "BrightDiagnostics_macos.h"
-
-  export *
-  module * { export * }
-}
