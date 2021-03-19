@@ -143,24 +143,6 @@ static BRTCollectedData const _Nonnull BRTCollectedDataWiFiInfo = @"com.att.mobi
 @property (nonatomic, class) BOOL realTimeUploadsEnabled;
 
 /**
- Set to allow the app to be restarted when receiving a visit event when
- monitoring visits is enabled - defaults to off.
- 
- When the app receives a notice it is about to terminate, BrightDiagnostics,
- by default, will stop monitoring visits and significate location changes to
- prevent the app from being restarted when location services delivers an
- update after the app terminates.  Setting this flag tells BrightDiagnostics
- to not disable monitoring (if it is enabled). This optional setting should
- ONLY be changed if the app has put the proper mechanism in place to handle
- a restart caused by receiving a location or visit update.
- 
- Most apps do not have this capability by default, and should not change this
- setting.  Please review the Apple documentation on CLVisit startMonitoringVisits
- and CLLocationManager programming before changing this setting.
- */
-@property (nonatomic, class) BOOL allowVisitsToRestartAppEnabled;
-
-/**
  typedef from CLLocation.h
  */
 typedef double CLLocationAccuracy;
@@ -212,14 +194,6 @@ typedef void (^ConfigureWithConfigurationCompletion)(BOOL);
 + (void)configureWithConfiguration:(BRTConfiguration *_Nullable)configuration
                         completion:(ConfigureWithConfigurationCompletion _Nullable)completion;
 
-/**
- Enable / Disable the crash report collection & uploads by the SDK.
- 
- @note Once CrashReporter is enabled it will collect the crash data to process and uploads on BrighgtDiagnostics Initialization.
- Any uploads already in progress will still complete when set to `false`.
- */
-@property (nonatomic, class) BOOL enabledCrashReporter;
-
 
 #pragma mark - Collecting Data
 
@@ -258,57 +232,6 @@ typedef void (^ConfigureWithConfigurationCompletion)(BOOL);
 /** Stop timer based collection */
 + (void)stopTimedCollection;
 
-#pragma mark - Location Based Triggers
-
-#if !TARGET_OS_TV
-
-/// Indicates if timer based collection is enabled
-@property (nonatomic, readonly, class) BOOL monitoringSignificantLocationChange;
-
-/**
- Start collecting based on signifcant location change.
- 
- *Not available on tvOS.*
- 
- @note Prior to calling this method, you must have already obtained Location Always Authorization.
- To enable monitoring in the background, you must enable the *Location updates Background Mode*
- for your app and set the `CLLocationManager` property `allowsBackgroundLocationUpdates` to `true`.
- See BDSDK integration guide for details.
- 
- @return True on success, false if significant location change is not
- available on the device or Location Always authorization is not granted.
- */
-+ (BOOL)startSignificantLocationChangeCollection __TVOS_PROHIBITED;
-
-/** Stop monitoring using significant location change.
- 
- *Not available on tvOS.*
- */
-+ (void)stopSignificantLocationChangeCollection __TVOS_PROHIBITED;
-
-/**
- Start Monitoring Visits
- 
- *Not available on tvOS.*
- 
- @note Prior to calling this method, you must have already obtained Location Always Authorization.
- To enable monitoring in the background, you must enable the *Location updates Background Mode*
- for your app and set the `CLLocationManager` property `allowsBackgroundLocationUpdates` to `true`.
- See BDSDK integration guide for details.
- 
- @return True on success, false if monitoring visits is not
- available on the device or Location Always authorization is not granted.
- */
-+ (BOOL)startMonitoringVisits __TVOS_PROHIBITED;
-
-/**
- Stop Monitoring Visits
- 
- *Not available on tvOS.*
- */
-+ (void)stopMonitoringVisits __TVOS_PROHIBITED;
-
-#endif
 
 
 @end

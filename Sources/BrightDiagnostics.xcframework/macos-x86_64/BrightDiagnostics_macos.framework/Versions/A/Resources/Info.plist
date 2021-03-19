@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>BrightDiagnostics_macos</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.sfbd.mobile.brightDiagnostics.mcpttDemo.BrightDiagnostics-macos</string>
+	<string>com.att.mobile.SampleSwiftUITests.BrightDiagnostics-macos</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -41,7 +41,7 @@
 	<key>DTXcodeBuild</key>
 	<string>12C33</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.14</string>
+	<string>10.15</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2021 AT&amp;T CDO. All rights reserved.</string>
 </dict>
