@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "BrightDiagnostics"
-  spec.version      = "3.0.7"
+  spec.version      = "3.0.8"
   spec.summary      = "BrightDiagnostics SDK for the Apple ecosystem"
   spec.description  = "BrightDiagnostics SDK for iOS contains the feature to collect data"
   spec.homepage     = "http://docs.wmcdp.io/docs/prism/ios/gettingstarted/"
