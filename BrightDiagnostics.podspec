@@ -13,7 +13,5 @@ Pod::Spec.new do |spec|
   spec.swift_version = "5.1"
   spec.source       = { :http => "http://github.com/SunilChowdarySirimalla/BDSDK_iOS_Package/blob/main/BrightDiagnostics.xcframework.zip"}
   spec.vendored_frameworks = "BrightDiagnostics.xcframework"
-  spec.static_framework = true
-  spec.requires_arc = true
   
 end
